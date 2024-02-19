@@ -80,7 +80,7 @@ def average_crop(videofile, average_center):
     midpoint_x = true_center[0]
     midpoint_y = true_center[1]
 
-    # perfect square :) <3
+    # jam in whatever coordinates you want, size in pixels
     width = 300
     height = 300
 
