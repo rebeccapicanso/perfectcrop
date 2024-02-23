@@ -1,3 +1,3 @@
 # perfectcrop
 
-for best use, please break up long videos into independant shots using a shot detector.
+Made for Court Laureate, a short film screened at LARPA, December 2023.
