@@ -4,9 +4,11 @@ from transformers import pipeline
 import itertools
 import cv2
 
+# please pre-bulk cut videos, example set for 2 seconds from start
+# for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t 2 -map 0 test_dump/${file} ; done
+
 # searches through a video and extracts images of particular objects
 
-# the label we are looking for
 # please make sure you're using a term recognized by the model
 
 LABEL = "person"
@@ -14,6 +16,7 @@ LABEL = "person"
 # run the code only ever X frames (5 by default)
 SKIP = 5
 
+# build out pipeline
 pipe = pipeline("object-detection", model="hustvl/yolos-tiny")
 
 # please pre-bulk cut videos, example set for 2 seconds from start
