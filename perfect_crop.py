@@ -19,6 +19,9 @@ SKIP = 5
 # build out pipeline
 pipe = pipeline("object-detection", model="hustvl/yolos-tiny")
 
+# !!!!! Default model info !!!!!
+# https://cocodataset.org/#explore
+
 # please pre-bulk cut videos, example set for 2 seconds from start
 # for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t 2 -map 0 test_dump/${file} ; done
 
