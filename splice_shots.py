@@ -12,8 +12,14 @@ vidfile = VideoFileClip(VIDEO)
 # naming count, replace w whatever
 count = 0
 
-# create a subclip for each scene and write the video file!
-for s in scenes:
-    count +1
-    clip = vidfile.subclip(s["start"], s["end"])
-    clip.write_videofile(f'{count}_detected')
+# creating a method just so we can import as a module.........
+# this will create a subclip for each scene and writes the video file
+
+def splice():
+
+    for s in scenes:
+        count +1
+        clip = vidfile.subclip(s["start"], s["end"])
+        clip.write_videofile(f'{count}_detected')
+
+splice()
