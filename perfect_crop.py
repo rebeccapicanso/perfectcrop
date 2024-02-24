@@ -10,8 +10,8 @@ import cv2
 # searches through a video and extracts images of particular objects
 
 # please make sure you're using a term recognized by the model
-
-LABEL = "person"
+print("Perfect crop currently runs on HuggingFace's models with YOLO annotation, other annotations are to be completed later!")
+LABEL = input("Please enter the label you are looking for, either person or cellphone:")
 
 # run the code only ever X frames (5 by default)
 SKIP = 5
