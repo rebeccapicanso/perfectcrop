@@ -12,15 +12,8 @@ vidfile = VideoFileClip(VIDEO)
 # naming count, replace w whatever
 count = 0
 
-# create a subclip for each scene and add to the clips list
+# create a subclip for each scene and write the video file!
 for s in scenes:
     count +1
     clip = vidfile.subclip(s["start"], s["end"])
     clip.write_videofile(f'{count}_detected')
-
-# randomize the order of the clips
-random.shuffle(clips)
-
-# save a video
-composition = concatenate_videoclips(clips)
-composition.write_videofile("randomized.mp4")
