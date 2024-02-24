@@ -4,13 +4,16 @@ from transformers import pipeline
 import itertools
 import cv2
 
-# please pre-bulk cut videos, example set for 2 seconds from start
-# for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t 2 -map 0 test_dump/${file} ; done
-
-# searches through a video and extracts images of particular objects
-
 # please make sure you're using a term recognized by the model
 print("Perfect crop currently runs on HuggingFace's models with YOLO annotation, other annotations are to be completed later!")
+print("Please continue to respect the artistic & open-source nature of this project.")
+print("Created by Rebecca Picanso for Court Laureate, a short computational film screened at LARPA gallery, 2023 (NY,NY)\n\n")
+
+# this ia rudimentary for testing purposes
+# please make sure you're using a term recognized by the model
+#
+# https://cocodataset.org/#explore
+
 LABEL = input("Please enter the label you are looking for, either person or cellphone:")
 
 # run the code only ever X frames (5 by default)
@@ -19,13 +22,7 @@ SKIP = 5
 # build out pipeline
 pipe = pipeline("object-detection", model="hustvl/yolos-tiny")
 
-# !!!!! Default model info !!!!!
-# https://cocodataset.org/#explore
 
-# please pre-bulk cut videos, example set for 2 seconds from start
-# for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t 2 -map 0 test_dump/${file} ; done
-
-# you could bulk remove in code or just sort finder by date modified
 
 average_center = []
 
