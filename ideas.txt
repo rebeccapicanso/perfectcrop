@@ -1,0 +1,4 @@
+moving crop
+object detect from each frame, draw box, crop out, gif with ffmpeg subprocess?
+
+object detect scene splice, boolean? yes in frame, no out of frame, end clip
