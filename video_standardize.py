@@ -1,6 +1,14 @@
 # Standardize all videos for grid making.
 # As this is dependant on bash scripts via ffmpeg, source videos are a little tricky to delete. Please use proper file management.
 
+import subprocess
+import os
+
+def standardize():
+    command_shorten = 'for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t 2 -map 0 working/${file} ; done'
+    command_codecs = 'for file in working/*.mp4; do ffmpeg -i ${file} -c:v libx264 -crf 23 -preset veryfast -c:a copy ${file}.mp4'
+    subprocess.call
+  
 # shorten all videos to 2 seconds
 for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t 2 -map 0 test_dump/${file} ; done
 
