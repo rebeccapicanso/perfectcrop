@@ -17,5 +17,6 @@ perfectcrop accepts the following inputs:
 Due to the sensitive nature of working with video, perfect crop does not currently support multiple commandline options.
 
 potential errors:
-  * global loadsave ->   thankfully, this is harmless and most often caused by minuet differences in codecs or issues with local reading.
+  * global loadsave ->   thankfully, this is harmless and most often caused by minuet differences in codecs or issues with local reading. I'll hide it.
   * video not found ->   please check permissions, you can do this by running ls -al on the directory & open with chmod commands.
+  * file limit hit  ->   grid specific error. please run 'ulimit -n' in terminal to see your current limit, then ulimit -n [whatever] to increase the size to whatever you see fit. please note that this is isolated to your terminal window.
