@@ -11,7 +11,7 @@ perfectcrop accepts the following inputs:
   
   -vs  [video, directory]    | standardizes video length, codecs, etc. with ffmpeg bash. needed for concatenation!
   
-  -g  [video, directory]    | creates a dynamic, randomized moving video grid with ffmpeg bash commands. this is a legacy file from Court Laureate, not necessary for the project itself :)
+  -g  [video, directory]     | creates a dynamic, randomized moving video grid with ffmpeg bash commands. this is a legacy file from Court Laureate, not necessary for the project itself :)
 ```
 
 Due to the sensitive nature of working with video, perfect crop does not currently support multiple commandline options.
