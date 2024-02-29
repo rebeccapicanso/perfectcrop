@@ -115,7 +115,7 @@ def grid(ungraded_person):
 
 
 
-
+# for additional grid shapes, uses..
 
 #         # clip = VideoFileClip(ungraded_person[1])
 #         # clip = clip.crop(x1=1000, width=32)
