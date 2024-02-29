@@ -1,1 +1,21 @@
+[project]
+name = "perfect-crop_Rebecca_Picanso"
+version = "0.0.1"
+authors = [
+  { name="Rebecca Picanso", email="rebecca@rebecca.fyi" },
+]
+description = "A video cropping tool for artists that detects an object, finds the average center pixel of the bounding box, and crops out from center without a decrease in video quality."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
+[project.urls]
+Homepage = "https://github.com/rebeccapicanso/perfect_crop"
+Issues = "https://github.com/pypa/sampleproject/issues"
+
+[build-system]
+requires = ["PIL","transformers","moviepy","cv2","json","scenedetect"]
