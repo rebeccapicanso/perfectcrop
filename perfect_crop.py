@@ -5,9 +5,7 @@ import itertools
 import cv2
 
 # please make sure you're using a term recognized by the model
-print("Perfect crop currently runs on HuggingFace's models with YOLO annotation, other annotations are to be completed later!")
-print("Please continue to respect the artistic & open-source nature of this project.")
-print("Created by Rebecca Picanso for Court Laureate, a short computational film screened at LARPA gallery, 2023 (NY,NY)\n\n")
+print("Perfect crop currently runs on HuggingFace's models with YOLO annotation, support other annotations are to be completed later.")
 
 # this ia rudimentary for testing purposes
 # please make sure you're using a term recognized by the model
