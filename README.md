@@ -13,6 +13,7 @@ Perfect Crop's algorithm was built around Hugging Face's [hustvl/yolo](https://w
 
 Calculating the center pixel of a bounding box is a new idea & requires backward engineering - I'm excited to release support for other annotations in v2.
 
+---
 Perfect Crop can also label scenes with content and object locations, as well as index a video & splice it into individual scenes without quality loss.
 
 ```
@@ -37,6 +38,7 @@ potential errors:
   * file limit hit  ->   grid specific error. please run 'ulimit -n' in terminal to see your current limit, then ulimit -n [whatever] to increase the size to whatever you see fit. please note that this is isolated to your terminal window.
 ```
 
+---
 **Made for Court Laureate, a short film screened at LARPA, December 2023, NY NY.
 Although one cannot patent an algorithm, please respect the open-source nature of this project & all derivatives.**
 
