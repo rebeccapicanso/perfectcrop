@@ -9,7 +9,9 @@ Source Clip            |  Detected Object
 :-------------------------:|:-------------------------:
 ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_source.gif)| ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_detected.gif)
 
-Perfect Crop's algorithm was built around Hugging Face's [hustvl/yolo](https://www.google.com/search?q=hustvl%2Fyolo-tiny&rlz=1C5CHFA_enUS997US998&oq=yolostiny+hu&gs_lcrp=EgZjaHJvbWUqCggBEAAYChgWGB4yBggAEEUYOTIKCAEQABgKGBYYHjINCAIQABiGAxiABBiKBdIBCDMwNTRqMGo0qAIAsAIA&sourceid=chrome&ie=UTF-8) sets, a series of vision transformer models trained on the [COCO](https://cocodataset.org/#home) dataset. It's computationally light on any system. At the moment, the algorithm is set only for models using YOLO bounding box annotations - so if you want to swap out the model, keep that in mind. v2 will include additional annotations.
+Perfect Crop's algorithm was built around Hugging Face's [hustvl/yolo](https://www.google.com/search?q=hustvl%2Fyolo-tiny&rlz=1C5CHFA_enUS997US998&oq=yolostiny+hu&gs_lcrp=EgZjaHJvbWUqCggBEAAYChgWGB4yBggAEEUYOTIKCAEQABgKGBYYHjINCAIQABiGAxiABBiKBdIBCDMwNTRqMGo0qAIAsAIA&sourceid=chrome&ie=UTF-8) sets, a series of vision transformer models trained on the [COCO](https://cocodataset.org/#home) dataset. It's computationally light on any system. At the moment, the algorithm is set only for models using YOLO bounding box annotations - so if you want to swap out the model, keep that in mind.
+
+Calculating the center pixel of a bounding box is a new idea & requires backward engineering - I'm excited to release support for other annotations in v2.
 
 Perfect Crop can also label scenes with content and object locations, as well as index a video & splice it into individual scenes without quality loss.
 
@@ -36,5 +38,5 @@ potential errors:
 ```
 
 **Made for Court Laureate, a short film screened at LARPA, December 2023, NY NY.
-Although one cannot patent an algorithm (finding the center of a bounding box is a new thing), please respect the open-source nature of this project & all derivatives.**
+Although one cannot patent an algorithm, please respect the open-source nature of this project & all derivatives.**
 
