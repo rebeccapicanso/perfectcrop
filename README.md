@@ -4,7 +4,7 @@ Perfect Crop will locate a detected object within a video clip, find its average
 
 This tool is most useful when used on large clip sets (200+). It was built for the processing of 32 hours of live stream footage!
 
-for example, searching the video for "cell phone":
+As a test example, searching the video for "cell phone":
 Source Clip            |  Detected Object
 :-------------------------:|:-------------------------:
 ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_source.gif)| ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_detected.gif)
