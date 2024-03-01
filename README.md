@@ -32,4 +32,5 @@ potential errors:
 ```
 
 Made for Court Laureate, a short film screened at LARPA, December 2023, NY NY.
+Although one cannot patent an algorithm (finding the center of a bounding box is a new thing), please respect the open-source nature of this project & all derivatives.
 
