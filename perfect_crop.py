@@ -12,7 +12,8 @@ print("Perfect crop currently runs on HuggingFace's models with YOLO annotation,
 #
 # https://cocodataset.org/#explore
 
-LABEL = input("Please enter the label you are looking for, either person or cellphone:")
+LABEL = input("Please enter the label you are looking for.\n"
+             + "Labels must be searchable at https://cocodataset.org/#explore:" )
 
 # run the code only ever X frames (5 by default)
 SKIP = 5
