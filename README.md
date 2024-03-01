@@ -1,6 +1,7 @@
 # perfect crop
 
 Perfect Crop will locate a detected object within a video clip, find its average location, and create a cropped clip from the center. Object detection models splice videos into individual frames & then run detection on images - perfect crop transmutes this into workable video.
+This tool is most useful when used on large clip sets (200+). It was built for the processing of 32 hours of live stream footage!
 
 for example, searching the video for "cell phone":
 Source Clip            |  Detected Object
