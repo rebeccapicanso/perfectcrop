@@ -19,13 +19,15 @@ Perfect Crop can also label scenes with content and object locations, as well as
 ```
 perfectcrop accepts the following inputs:
 
-  -p   [video, directory]    | crop a video or directory of clips to select label (runs perfect_crop.py)
+  -p   [video or directory]    | crop a video or directory of clips to select label (runs perfect_crop.py)
 
-  -s   [video]               | create .json file identifying shots (scene changes) in a long form video. shots.py will then splice the video into individual clips (or scenes).
+  -s   [video]                 | create .json file identifying shots (scene changes) in a long form video. shots.py will then splice the video into individual clips (or scenes).
   
-  -vs  [video, directory]    | standardizes video length, codecs, etc. with ffmpeg bash. needed for concatenation!
+  -vs  [video or directory]    | standardizes video length, codecs, etc. with ffmpeg bash. needed for concatenation!
   
-  -g  [video, directory]     | creates a dynamic, randomized moving video grid with ffmpeg bash commands. this is a legacy file from Court Laureate, not necessary for the project itself :)
+  -g   [video or directory]    | creates a dynamic, randomized moving video grid with ffmpeg bash commands. this is a legacy file from Court Laureate, not necessary for the project itself :)
+
+  -l   [video or directory]    | for a select object, identifies what shots that label appears, and then records the average location of that object.
 ```
 
 Due to the sensitive nature of working with video, Perfect Crop does not currently support multiple command line options.
