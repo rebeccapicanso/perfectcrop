@@ -15,6 +15,7 @@ perfectcrop accepts the following inputs:
 ```
 
 Due to the sensitive nature of working with video, perfect crop does not currently support multiple commandline options.
+Please note that perfectcrop -s needs to be run in the same directory as the source video for shot splicing to occur.
 
 potential errors:
 ```
