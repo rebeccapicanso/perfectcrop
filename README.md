@@ -5,7 +5,7 @@ Perfect Crop will locate a detected object within a video clip, find its average
 for example, searching the video for "cell phone":
 Source Clip            |  Detected Object
 :-------------------------:|:-------------------------:
-![](https://github.com/rebeccapicanso/perfect_crop/blob/main/search_source.gif)| ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/search_detected.gif)
+![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_source.gif)| ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_detected.gif)
 
 ```
 perfectcrop accepts the following inputs:
