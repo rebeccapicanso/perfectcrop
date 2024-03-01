@@ -1,6 +1,11 @@
 # perfect crop
 
-Made for Court Laureate, a short film screened at LARPA, December 2023, NY NY.
+Perfect Crop will locate a detected object within a video clip, find its average location, and create a cropped clip from the center.
+
+for example, searching the video for "cell phone":
+Source Clip            |  Detected Object
+:-------------------------:|:-------------------------:
+![](https://github.com/rebeccapicanso/perfect_crop/blob/main/search_source.gif)| ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/search_detected.gif)
 
 ```
 perfectcrop accepts the following inputs:
@@ -23,3 +28,5 @@ potential errors:
   * video not found ->   please check permissions, you can do this by running ls -al on the directory & open with chmod commands.
   * file limit hit  ->   grid specific error. please run 'ulimit -n' in terminal to see your current limit, then ulimit -n [whatever] to increase the size to whatever you see fit. please note that this is isolated to your terminal window.
 ```
+
+Made for Court Laureate, a short film screened at LARPA, December 2023, NY NY.
