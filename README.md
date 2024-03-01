@@ -7,6 +7,8 @@ Source Clip            |  Detected Object
 :-------------------------:|:-------------------------:
 ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_source.gif)| ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_detected.gif)
 
+Perfect Crop can also index a video & splice into individual scenes without quality loss.
+
 ```
 perfectcrop accepts the following inputs:
 
