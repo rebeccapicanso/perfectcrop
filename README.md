@@ -1,15 +1,15 @@
-# perfect crop
+# Perfect Crop
 
-Perfect Crop will locate a detected object within a video clip, find its average location, and create a cropped clip from the center. Object detection models splice videos into individual frames & then run detection on images - perfect crop transmutes this into workable video.
+Perfect Crop will locate a detected object within a video clip, find its average location, and create a cropped clip from the center. Object detection models splice videos into individual frames & then run detection on images - Perfect Crop transmutes this into workable video.
 
-This tool is most useful when used on large clip sets (200+). It was built for the processing over 50 hours of live stream footage!
+This tool is most useful when used on large clip sets (200+). It was built for the quick processing of over 50 hours of live-stream footage!
 
 As a test example, searching the video for "cell phone":
 Source Clip            |  Detected Object
 :-------------------------:|:-------------------------:
 ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_source.gif)| ![](https://github.com/rebeccapicanso/perfect_crop/blob/main/readme_detected.gif)
 
-Perfect Crop can also index a video & splice into individual scenes without quality loss.
+Perfect Crop can also index a video & splice it into individual scenes without quality loss.
 
 ```
 perfectcrop accepts the following inputs:
@@ -23,7 +23,7 @@ perfectcrop accepts the following inputs:
   -g  [video, directory]     | creates a dynamic, randomized moving video grid with ffmpeg bash commands. this is a legacy file from Court Laureate, not necessary for the project itself :)
 ```
 
-Due to the sensitive nature of working with video, perfect crop does not currently support multiple commandline options.
+Due to the sensitive nature of working with video, Perfect Crop does not currently support multiple command line options.
 Please note that perfectcrop -s needs to be run in the same directory as the source video for shot splicing to occur.
 
 potential errors:
@@ -32,6 +32,10 @@ potential errors:
   * video not found ->   please check permissions, you can do this by running ls -al on the directory & open with chmod commands.
   * file limit hit  ->   grid specific error. please run 'ulimit -n' in terminal to see your current limit, then ulimit -n [whatever] to increase the size to whatever you see fit. please note that this is isolated to your terminal window.
 ```
+
+Perfect Crop's algorithm was built around Hugging Face's [hustvl/yolo](https://www.google.com/search?q=hustvl%2Fyolo-tiny&rlz=1C5CHFA_enUS997US998&oq=yolostiny+hu&gs_lcrp=EgZjaHJvbWUqCggBEAAYChgWGB4yBggAEEUYOTIKCAEQABgKGBYYHjINCAIQABiGAxiABBiKBdIBCDMwNTRqMGo0qAIAsAIA&sourceid=chrome&ie=UTF-8) sets, a series of vision transformer models trained on the [COCO](https://cocodataset.org/#home) dataset. It's computationally light on any system.
+
+At the moment, the algorithm is set only for models using YOLO bounding box annotations - so if you want to swap out the model, keep that in mind. v2 will include additional annotations.
 
 Made for Court Laureate, a short film screened at LARPA, December 2023, NY NY.
 Although one cannot patent an algorithm (finding the center of a bounding box is a new thing), please respect the open-source nature of this project & all derivatives.
