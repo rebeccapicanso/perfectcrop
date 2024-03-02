@@ -11,7 +11,7 @@ Source Clip            |  Detected Object
 
 Perfect Crop's algorithm was built around Hugging Face's [hustvl/yolo](https://www.google.com/search?q=hustvl%2Fyolo-tiny&rlz=1C5CHFA_enUS997US998&oq=yolostiny+hu&gs_lcrp=EgZjaHJvbWUqCggBEAAYChgWGB4yBggAEEUYOTIKCAEQABgKGBYYHjINCAIQABiGAxiABBiKBdIBCDMwNTRqMGo0qAIAsAIA&sourceid=chrome&ie=UTF-8) sets, a series of vision transformer models trained on the [COCO](https://cocodataset.org/#home) dataset. It's computationally light on any system. At the moment, the algorithm is set only for models using YOLO bounding box annotations - so if you want to swap out the model, keep that in mind.
 
-Calculating the center pixel of a bounding box is a new idea & requires backward engineering of detection algorithms - I'm excited to release support for other annotations in v2.
+Calculating the center pixel of a bounding box requires backward engineering of detection algorithms - I'm excited to release support for other annotations in v2.
 
 ---
 Perfect Crop can also label scenes with content and object locations, as well as index a video & splice it into individual scenes without quality loss.
