@@ -1,21 +1,32 @@
 [project]
 name = "perfect-crop_Rebecca_Picanso"
-version = "0.0.1"
+version = "1.0.1"
 authors = [
-  { name="Rebecca Picanso", email="rebecca@rebecca.fyi" },
+  { name="Rebecca Picanso, rebeccapicansot@gmail.com" },
 ]
 description = "A video cropping tool for artists that detects an object, finds the average center pixel of the bounding box, and crops out from center without a decrease in video quality."
 readme = "README.md"
 requires-python = ">=3.8"
+keywords = ["object detection", "video"]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+  "Topic :: Multimedia :: Video",
+  "Topic :: Object Detection",
+  "Topic :: Utilities"
 ]
 
 [project.urls]
 Homepage = "https://github.com/rebeccapicanso/perfect_crop"
-Issues = "https://github.com/pypa/sampleproject/issues"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+transformers = "^4.35.2"
+moviepy = "^1.0.3"
+opencv-python = "^4.8.1.78"
+scenedetect = "^0.6.2"
 
 [build-system]
-requires = ["PIL","transformers","moviepy","cv2","json","scenedetect"]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+perfectcrop = "perfectcrop.cli:main"
