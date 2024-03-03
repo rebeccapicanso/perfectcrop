@@ -4,14 +4,10 @@
 import subprocess
 import os
 
-def standardize():
+def standardize(videofile):
     command_shorten = 'for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t 2 -map 0 working/${file} ; done'
     command_codecs = 'for file in *.mp4; do ffmpeg -i ${file} -c:v libx264 -crf 23 -preset veryfast -c:a copy working/${file}.mp4; done'
     subprocess.call(command_shorten, command_codecs)
-
-if __name__ == "__main__":
-    standardize()
-    print("Standardization complete.")
 
   
 # shorten all videos to 2 seconds
