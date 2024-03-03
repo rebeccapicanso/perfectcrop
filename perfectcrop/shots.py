@@ -47,12 +47,3 @@ def get_shots(video):
         json.dump(shots, outfile, indent=2)
 
     return shots
-
-
-if __name__ == "__main__":
-    import sys
-
-    for f in sys.argv[1:]:
-        shots = get_shots(f)
-        for s in shots:
-            print(f"{s['start']} -> {s['end']}")
