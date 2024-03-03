@@ -1,6 +1,10 @@
 import argparse
 from . import grid, perfect_crop, shots, video_standardize
 
+
+
+# need to fix relational imports & argparse logic
+
 def main():
     """
     Run the command line version of Perfect Crop
