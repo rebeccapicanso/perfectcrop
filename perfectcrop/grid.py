@@ -140,35 +140,3 @@ def grid(ungraded_person):
         concat_file = "grida" + str(x) + "a.mp4"
         # run command
         subprocess.call(command, shell=True)
-
-# # for some reason this below doesn't work yet
-
-# # STANDARDIZE
-# # ffmpeg -i ${file} -c:v libx264 -crf 23 -preset veryfast -c:a copy ${file}.mp4
-
-# # SHORTEN
-# # ffmpeg -i movie.mp4 -ss 00:00:00 -t 00:00:01 -async 1 -strict -2 cut.mp4 
-
-# # CONCATENATE
-# # find *.mp4 | sed 's:\ :\\\ :g'| sed 's/^/file /' > fl.txt; ffmpeg -f concat -i fl.txt -c copy output.mp4; rm fl.txt
-
-# # BLUE HUE
-# # ffmpeg -i punch.mp4 -filter_complex "[0:v]pixelize,colorize=hue=197.29:saturation=0.7:lightness=0.5[out_v]" -map "[out_v]" out.mp4
-
-
-# # accept user input to set path in main
-if __name__ == "__main__":
-    import sys
-    for f in sys.argv[1:]:
-        setup(f)
-        grid(ungraded_person)
-        # concat(concat_file, f)
-
-
-
-# note! you will run into a "too many files open error"
-
-
-# ffmpeg -y -f s16be -i /dev/zero -af "[in]anullsink;amovie=1.wav[a1];amovie=silence.wav[a2];amovie=2.wav[a3];amovie=4.wav[a4];[a1][a2][a3][a4]concat=n=4:v=0:a=1[out]" -shortest -t 12 output.wav
-
-
