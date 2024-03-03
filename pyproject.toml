@@ -8,7 +8,6 @@ requires-python = ">=3.8"
 keywords = ["object detection", "video"]
 classifiers = [
   "Topic :: Multimedia :: Video",
-  "Topic :: Object Detection",
   "Topic :: Utilities"]
 
 [tool.poetry.dependencies]
@@ -17,6 +16,7 @@ transformers = "^4.35.2"
 moviepy = "^1.0.3"
 opencv-python = "^4.8.1.78"
 scenedetect = "^0.6.2"
+ffmpeg = "^1.4"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.3.1"
