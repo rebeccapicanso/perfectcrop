@@ -61,17 +61,17 @@ def main():
         perfect_crop.save_images(args.input, args.label)
         perfect_crop.average_center(args.input)
 
-    if args.shots:
+    elif args.shots:
         shots(args.input)
 
-    if args.standardize:
+    elif args.standardize:
         video_standardize(args.input)
     
-    if args.grid:
+    elif args.grid:
         video_standardize.standardize(args.input)
         grid.save_path(args.input)
 
-    if args.help:
+    elif args.help:
         print("Perfect Crop is a tool to crop videos to a specific object in the video.\n" +
               "Usage: perfectcrop -i [INPUT] [OPTIONS]" )
     
