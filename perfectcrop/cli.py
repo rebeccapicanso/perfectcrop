@@ -1,4 +1,4 @@
-import argparse
+iimport argparse
 from . import grid, perfect_crop, shots, video_standardize
 
 
@@ -68,8 +68,8 @@ def main():
         video_standardize(args.input)
     
     if args.grid:
-        print("please note that the input must be a directory of clips, not a single file.")
-        grid(args.input)
+        video_standardize.standardize(args.input)
+        grid.save_path(args.input)
 
     if args.help:
         print("Perfect Crop is a tool to crop videos to a specific object in the video.\n" +
