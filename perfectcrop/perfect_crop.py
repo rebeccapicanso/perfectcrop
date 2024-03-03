@@ -91,15 +91,3 @@ def average_crop(videofile, average_center):
     # write it as the same name as the video file + _cropped
     video.write_videofile(f'{videofile}_person.mp4')
 
-
-
-
-
-    
-if __name__ == "__main__":
-    import sys
-
-    for f in sys.argv[1:]:
-        save_images(f, LABEL)
-    
-        average_crop(f, average_center)
