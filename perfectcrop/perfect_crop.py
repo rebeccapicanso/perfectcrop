@@ -12,9 +12,6 @@ print("Perfect crop currently runs on HuggingFace's models with YOLO annotation,
 #
 # https://cocodataset.org/#explore
 
-LABEL = input("Please enter the label you are looking for.\n"
-             + "Labels must be searchable at https://cocodataset.org/#explore:" )
-
 # run the code only ever X frames (5 by default)
 SKIP = 5
 
@@ -25,11 +22,17 @@ pipe = pipeline("object-detection", model="hustvl/yolos-tiny")
 
 average_center = []
 
-def save_images(videofile, search=LABEL):
+def save_images(videofile):
     clip = VideoFileClip(videofile)
     index = 0
     frame_no = 0
-
+    
+    # moved label choice within function for argparse reasons
+    # outside of function for the solo_perfect_crop.py file
+    
+    LABEL = input("Please enter the label you are looking for.\n"
+             + "Labels must be searchable at https://cocodataset.org/#explore:" )
+            
     for frame in clip.iter_frames():
         frame_no += 1
         if frame_no % SKIP != 0:
@@ -43,7 +46,11 @@ def save_images(videofile, search=LABEL):
 
         for r in results:
             # print(r)
-            if r["label"] == search:
+            
+            # these nested ifs are inelegant and causing the global loadsave error
+            # will fix for release
+            
+            if r["label"] == LABEL:
                 box = r["box"]
 
                 xmin = box["xmin"]
@@ -64,14 +71,18 @@ def save_images(videofile, search=LABEL):
 
                     center = [center_x,center_y]
                     average_center.append(center)
+                    
+                    # not necessary, make more elegant?
                     print(center)
 
                     index += 1
                 else:
                     print("out of bounds")
                     continue
+                    
+    return average_center
 
-def average_crop(videofile, average_center):
+def average_crop(videofile):
     print(average_center)
 
     true_center= [sum(x)/len(x) for x in zip(*average_center)]
@@ -91,3 +102,7 @@ def average_crop(videofile, average_center):
     # write it as the same name as the video file + _cropped
     video.write_videofile(f'{videofile}_person.mp4')
 
+# figure out how best to call this in relation to argparse
+
+save_images()
+average_crop()
