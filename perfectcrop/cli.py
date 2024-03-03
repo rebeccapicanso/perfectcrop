@@ -16,7 +16,6 @@ def main():
         "--input",
         "-i",
         help="The input video file or directory of video files to process.",
-        nargs="*",
         required=True,
         dest="input")
 
@@ -28,15 +27,6 @@ def main():
         help="Crop a video or directory of clips to select label (runs perfect_crop.py)"
         )
     
-    # label used for object detection
-    parser.add_argument(
-        "-l",
-        "--label",
-        dest="label",
-        action="append",
-        help="Label used for object detection with perfect_crop.py"
-    )
-
     parser.add_argument(
         "-s", 
         "--shots",
