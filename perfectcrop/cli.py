@@ -66,7 +66,6 @@ def main():
     )
 
     args = parser.parse_args()
-    print(args)
 
     if args.perfectcrop:
         perfect_crop.save_images(args.input, args.label)
