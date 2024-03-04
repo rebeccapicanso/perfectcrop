@@ -1,5 +1,11 @@
 # Perfect Crop
 
+Perfect Crop is now released as a commandline tool!
+```
+pip install perfectcrop
+```
+---
+
 Perfect Crop will locate a detected object within a video clip, find its average location, and create a cropped clip from the center. Object detection models splice videos into individual frames & then run detection on static images - Perfect Crop transmutes this into workable video.
 
 This tool is most useful when used on large clip sets (200+). It was built for the quick processing of over 50 hours of live-stream footage!
@@ -19,17 +25,35 @@ Perfect Crop can also label scenes with content and object locations, as well as
 ```
 perfectcrop accepts the following inputs:
 
-  -p   [video or directory]    | crop a video or directory of clips to select label (runs perfect_crop.py)
+  -i   [input]                              | input, single file path or directory (for grid)
 
-  -s   [video]                 | create .json file identifying shots (scene changes) in a long form video. shots.py will then splice the video into individual clips (or scenes).
+and one of the following..
+
+  -p, --perfect_crop  [video or directory]  | crop a video or directory of clips to select label (runs perfect_crop.py)
+
+  -s, --shots   [video]                     | create .json file identifying shots (scene changes) in a long form video. shots.py will then splice the video into individual clips (or scenes).
   
-  -vs  [video or directory]    | standardizes video length, codecs, etc. with ffmpeg bash. needed for concatenation!
+  -t, --standardize [video or directory]    | standardizes video length, codecs, etc. with ffmpeg bash. needed for concatenation!
   
-  -g   [video or directory]    | creates a dynamic, randomized moving video grid with ffmpeg bash commands. this is a legacy file from Court Laureate, not necessary for the project itself :)
+  -g, --grid   [video or directory]         | creates a dynamic, randomized moving video grid with ffmpeg bash commands. this is a legacy file from Court Laureate, not necessary for the project itself :)
+
+followed by output directory, if left blank resorts to current directory..
+
+  -o  [output]                              | output directory, will create for you
+```
+example usage:
+```
+perfectcrop -i tennis_match.mp4 -p -o tennis
 ```
 
 Due to the sensitive nature of working with video, Perfect Crop does not currently support multiple command line options.
 Please note that perfectcrop -s needs to be run in the same directory as the source video for shot splicing to occur.
+
+---
+
+
+
+sdfs
 
 potential errors:
 ```
