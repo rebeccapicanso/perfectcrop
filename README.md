@@ -4,6 +4,8 @@ Perfect Crop is now released as a commandline tool!
 ```
 pip install perfectcrop
 ```
+Please note that at this moment, only -g --grid will accept directory input. Will be patched in the coming days!
+
 ---
 
 Perfect Crop will locate a detected object within a video clip, find its average location, and create a cropped clip from the center. Object detection models splice videos into individual frames & then run detection on static images - Perfect Crop transmutes this into workable video.
