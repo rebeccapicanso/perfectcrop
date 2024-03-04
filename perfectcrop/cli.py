@@ -1,83 +1,89 @@
-iimport argparse
-from . import grid, perfect_crop, shots, video_standardize
+import argparse
+import sys
+import grid
+import shots
+import video_standardize
+import perfect_crop
 
-
-
-# need to fix relational imports & argparse logic
 
 def main():
     """
-    Run the command line version of Perfect Crop
+    Run the command line version of Perfect Crop.
     """
+
     parser = argparse.ArgumentParser(
-        description="Perfect Crop is a tool to crop videos to a specific object in the video."
-    )
+        add_help=False,
+        description="Perfect Crop is a tool to crop videos to a specific object in the video.")
+
     parser.add_argument(
-        "--input",
         "-i",
+        "--input",
         help="The input video file or directory of video files to process.",
+        action="store",
         required=True,
         dest="input")
 
+    # just use boolean logic for arguements
     parser.add_argument(
-        "-p",
-        "--perfectcrop",
-        dest="perfectcrop",
-        action="append",
-        help="Crop a video or directory of clips to select label (runs perfect_crop.py)"
-        )
-    
-    parser.add_argument(
-        "-s", 
+        "-s",
         "--shots",
         dest="shots",
-        action="append",
-        help="Create .json file identifying shots (scene changes) in a long form video. shots.py will then splice the video into individual clips (or scenes)."
-        )
-    parser.add_argument(
-        "-vs", 
-        "--standardize",
-        dest="standardize",
-        action="append",
-        help="Standardizes video length, codecs, etc. with ffmpeg bash. needed for concatenation!")
+        default="False",
+        help="Run the shots function.",
+        action="store_true")
     
     parser.add_argument(
-        "-g", 
+        "-g",
         "--grid",
-        dest="grid",
-        action="append",
-        help="Creates a dynamic, randomized moving video grid with ffmpeg bash commands. this is a legacy file from Court Laureate, not necessary for the project itself :)")
-
+        help="Run the grid function.",
+        dest= "grid",
+        default="False",
+        action="store_true")
+    
     parser.add_argument(
-        "-h",
-        "--help",
-        action="help",
-        help="Show this help message and exit."
-    )
+        "-p",
+        "--perfect_crop",
+        help="Run the perfect crop function.",
+        dest="perf",
+        default="False",
+        action="store_true")
+    
+    parser.add_argument(
+        "-t",
+        "--standardize",
+        dest="standardize",
+        help="Run the standardize function.",
+        default="False",
+        action="store_true")
+    
+    parser.add_argument(
+        "-o",
+        "--output",
+        dest="output",
+        # if no output is given, set it to the current directory
+        default=".",
+        action="store",
+        required=True,
+        help="The output directory to save the processed videos.")
 
     args = parser.parse_args()
 
-    if args.perfectcrop:
-        perfect_crop.save_images(args.input, args.label)
-        perfect_crop.average_center(args.input)
+    perfcrop = args.perf
+    shots_ = args.shots
+    grid_ = args.grid
+    standardize_ = args.standardize
 
-    elif args.shots:
-        shots(args.input)
-
-    elif args.standardize:
-        video_standardize(args.input)
-    
-    elif args.grid:
-        video_standardize.standardize(args.input)
-        grid.save_path(args.input)
-
-    elif args.help:
-        print("Perfect Crop is a tool to crop videos to a specific object in the video.\n" +
-              "Usage: perfectcrop -i [INPUT] [OPTIONS]" )
-    
+    if perfcrop == True:
+        perfect_crop.save_images(args.input, args.output)
+    elif shots_ == True:
+        shots.get_shots(args.input, args.output)
+    elif standardize_ == True:
+        video_standardize(args.input, args.output)
+    elif grid_ == True:
+        grid(args.input, args.output)
     else:
-        print("No tasks specified. Please run -h or --help for more information.")
-
+        print("Please specify a function to run.")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
