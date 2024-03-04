@@ -4,7 +4,9 @@ Perfect Crop is now released as a commandline tool!
 ```
 pip install perfectcrop
 ```
-Please note that at this moment, only -g --grid will accept directory input. Will be patched in the coming days!
+v1 notes:
+- Please note that at this moment, only -g --grid will accept directory input. Will be patched in the coming days!
+- There's not yet an array storing acceptable labels. Please visit the COCO website for usable options. In v2, I'll be adding a webscraping element to append acceptable labels, in addition to other annotation support.
 
 ---
 
