@@ -23,7 +23,7 @@ def main():
         required=True,
         dest="input")
 
-    # just use boolean logic for arguements
+    # just use boolean logic for arguments
     parser.add_argument(
         "-s",
         "--shots",
