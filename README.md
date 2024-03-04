@@ -52,9 +52,6 @@ Please note that perfectcrop -s needs to be run in the same directory as the sou
 ---
 
 
-
-sdfs
-
 potential errors:
 ```
   * global loadsave ->   thankfully, this is harmless and most often caused by minute differences in codecs or issues with local reading. I'll hide it.
