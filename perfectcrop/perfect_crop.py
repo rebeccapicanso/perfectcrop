@@ -1,16 +1,17 @@
 from moviepy.editor import VideoFileClip
 from PIL import Image
 from transformers import pipeline
-import itertools
 import cv2
+import os
 
 # please make sure you're using a term recognized by the model
-print("Perfect crop currently runs on HuggingFace's models with YOLO annotation, support other annotations are to be completed later.")
+print("Perfect crop currently runs on HuggingFace's models with YOLO annotation, support other annotations are to be completed later.\n")
 
-# this ia rudimentary for testing purposes
-# please make sure you're using a term recognized by the model
-#
-# https://cocodataset.org/#explore
+print("please make sure you're using a term recognized by the model")
+print("https://cocodataset.org/#explore")
+
+LABEL = input("Please enter the label you are looking for.\n"
+             + "Labels must be searchable at https://cocodataset.org/#explore:" )
 
 # run the code only ever X frames (5 by default)
 SKIP = 5
@@ -18,21 +19,20 @@ SKIP = 5
 # build out pipeline
 pipe = pipeline("object-detection", model="hustvl/yolos-tiny")
 
-
-
 average_center = []
 
-def save_images(videofile):
+def save_images(input, output, search=LABEL):
+
+    # set input as videofile
+    videofile = input
     clip = VideoFileClip(videofile)
     index = 0
     frame_no = 0
-    
-    # moved label choice within function for argparse reasons
-    # outside of function for the solo_perfect_crop.py file
-    
-    LABEL = input("Please enter the label you are looking for.\n"
-             + "Labels must be searchable at https://cocodataset.org/#explore:" )
-            
+
+    # make output directory
+    if not os.path.exists("output"):
+        os.makedirs("output")
+
     for frame in clip.iter_frames():
         frame_no += 1
         if frame_no % SKIP != 0:
@@ -46,11 +46,7 @@ def save_images(videofile):
 
         for r in results:
             # print(r)
-            
-            # these nested ifs are inelegant and causing the global loadsave error
-            # will fix for release
-            
-            if r["label"] == LABEL:
+            if r["label"] == search:
                 box = r["box"]
 
                 xmin = box["xmin"]
@@ -58,12 +54,14 @@ def save_images(videofile):
                 xmax = box["xmax"]
                 ymax = box["ymax"]
 
-                print(xmin,ymin,xmax,ymax)
+                # print(xmin,ymin,xmax,ymax)
 
                 # must make sure that the box is not out of bounds
                 if xmin > 0 and xmax > 0 and ymin > 0 and ymax > 0:
                     # this is giving a harmless global error... not sure why
                     img_read= cv2.imread(r'image.png')
+                    # hide the global loadsave error
+                    
                     
                     cv2.rectangle(img_read,(xmin,ymin),(xmax,ymax),(0,0,255),3)
                     center_x = int((xmin+xmax)//2)
@@ -71,38 +69,48 @@ def save_images(videofile):
 
                     center = [center_x,center_y]
                     average_center.append(center)
-                    
-                    # not necessary, make more elegant?
-                    print(center)
+                    # print(center)
 
                     index += 1
                 else:
                     print("out of bounds")
                     continue
-                    
-    return average_center
+    
+    # it's a little inelegant but it works without sacrificing quality
 
-def average_crop(videofile):
-    print(average_center)
+    def average_crop():
+        print(average_center)
 
-    true_center= [sum(x)/len(x) for x in zip(*average_center)]
+        true_center= [sum(x)/len(x) for x in zip(*average_center)]
 
-    # now we have the coordinates of the box, we can crop the video
-    clip = VideoFileClip(videofile)
+        # now we have the coordinates of the box, we can crop the video
+        clip = VideoFileClip(videofile)
 
-    midpoint_x = true_center[0]
-    midpoint_y = true_center[1]
+        midpoint_x = true_center[0]
+        midpoint_y = true_center[1]
 
-    # jam in whatever coordinates you want, size in pixels
-    width = 300
-    height = 300
+        width = 300
+        height = 300
 
-    video = clip.crop(x_center=midpoint_x, y_center=midpoint_y, width=width, height=height)
+        # jam in whatever coordinates you want, size in pixels
+        video = clip.crop(x_center=midpoint_x, y_center=midpoint_y, width=width, height=height)
 
-    # write it as the same name as the video file + _cropped
-    video.write_videofile(f'{videofile}_person.mp4')
+        # write it as the same name as the video file + _cropped
+        video.write_videofile(f'{input}_label.mp4')
+    
+    # call average crop
+    average_crop()
+    
+    # move clip from average crop into output directory
+    # create output directory if it doesn't already exist
+    if not os.path.exists(f'{output}'):
+        os.makedirs(f'{output}')
+    
+    os.system(f'mv *.mp4 {output}')
+    os.system(f'mv {output}/{input} .')
 
-# figure out how best to call this in relation to argparse
+    # notify file location
+    print("Files are in " + output)
 
-save_images()
-average_crop()
+if __name__ == "__main__":
+    save_images(input, output)
