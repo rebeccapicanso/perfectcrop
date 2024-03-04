@@ -3,22 +3,36 @@
 
 import subprocess
 import os
+import sys
 
-def standardize(videofile):
-    command_shorten = 'for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t 2 -map 0 working/${file} ; done'
+def standardize(input, output):
+    # set user input as video length
+    video_length = input("How long would you like the videos to be? (in seconds): ")
+
+    # and then create a command to shorten the videos
+    command_shorten = f'for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t {video_length} -map 0 working/${file} ; done'
     command_codecs = 'for file in *.mp4; do ffmpeg -i ${file} -c:v libx264 -crf 23 -preset veryfast -c:a copy working/${file}.mp4; done'
-    subprocess.call(command_shorten, command_codecs)
+    
+    # now to test
+    try:
+        subprocess.call(command_shorten, command_codecs)
+    except:
+        print("Something's wrong with your videos. Check & try again.")
+        print("Maybe permissions?")
+        sys.exit(1)
 
-  
-# shorten all videos to 2 seconds
-# for file in *.mp4; do ffmpeg -ss 00:00:00.00 -i in.mp4 -t 2 -map 0 test_dump/${file} ; done
+    # create the output directory if it doesn't exist
+    if not os.path.exists(output):
+        os.makedirs(output)
+    
+    # move all files to output directory
+    for file in os.listdir("working"):
+        if file.endswith(".mp4") != input:
+            os.rename(file, output + "/" + file)
+    
+    # notify file location
+    print("Files are in", output)
 
-# concatenate & standardize to shortest video, audio.
-# ffmpeg -y -f s16be -i /dev/zero -af "[in]anullsink;amovie=1.wav[a1];amovie=silence.wav[a2];amovie=2.wav[a3];amovie=4.wav[a4];[a1][a2][a3][a4]concat=n=4:v=0:a=1[out]" -shortest -t 12 output.wav
-
-# concatenate all files in a directory together by creating a text file with names of files and then reading from it.
-# find *.mp4 | sed 's:\ :\\\ :g'| sed 's/^/file /' > fl.txt; ffmpeg -f concat -i fl.txt -c copy output.mp4; rm fl.txt
-
-# standardize video codecs to avoid flip glitching
-# ffmpeg -i ${file} -c:v libx264 -crf 23 -preset veryfast -c:a copy ${file}.mp4
-
+if __name__ == "__main__":
+    standardize()
+    
