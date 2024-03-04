@@ -4,13 +4,13 @@ from moviepy.editor import VideoFileClip
 from scenedetect import ContentDetector, detect
 
 
-def get_shots(video):
+def get_shots(input, output):
 
-    print("Finding shots in", video) 
+    print("Finding shots in", input) 
 
-    outname = video + ".shots.json"
+    outname = input + ".shots.json"
 
-    vidfile = VideoFileClip(video)
+    vidfile = VideoFileClip(input)
 
     if os.path.exists(outname):
         with open(outname, "r") as infile:
@@ -18,11 +18,7 @@ def get_shots(video):
 
     shots = []
     count = 0
-    scene_list = detect(video, ContentDetector())
-
-    # make directory in path for clips
-    if not os.path.exists("clips"):
-        os.makedirs("clips")
+    scene_list = detect(input, ContentDetector())
         
     # comment me out if you only want to generate a .json file with shot indexing
     for shot in scene_list:
@@ -39,11 +35,28 @@ def get_shots(video):
         
         # due to the nature of moviepy, the clip will always include the original file name
         # these clips are ultimately placeholders.
-
-        clipname = count + ".mp4"
+        
+        clipname = f'{count}' + ".mp4"
         clip.write_videofile(f'{clipname}')
     
+    # after all the spliced clips render, we move them to the output directory, excluding the input clip.
+    if not os.path.exists(f'{output}'):
+        os.makedirs(f'{output}')
+    
+    os.system(f'mv *.mp4 {output}')
+    os.system(f'mv {output}/{input} .')
+
+    # notify file location
+    print("Files are in " + output)
+    print("To run again, you'll need to delete the .json file.")
+        
+    # then we .json dump
     with open(outname, "w") as outfile:
         json.dump(shots, outfile, indent=2)
 
     return shots
+
+# when shots is called in cli.py, run get_shots
+if __name__ == "__main__":
+    # set up get_shots to recieve two arguments from cli.py
+    get_shots(input, output)
