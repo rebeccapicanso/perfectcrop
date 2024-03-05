@@ -68,6 +68,7 @@ def main():
 
     args = parser.parse_args()
 
+    # this isn't totally necessary, but again avoiding an edge case.
     perfcrop = args.perf
     shots_ = args.shots
     grid_ = args.grid
