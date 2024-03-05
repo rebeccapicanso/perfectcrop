@@ -52,8 +52,9 @@ example usage:
 ```
 perfectcrop -i tennis_match.mp4 -p -o tennis
 ```
+Function arguements (-p, -s, -t, -g) are not positionally bound.. but I'd keep them in the middle anyways.
 
-Due to the sensitive nature of working with video, Perfect Crop does not currently support multiple command line options.
+Perfect Crop does not yet support multiple function options.
 Please note that perfectcrop -s needs to be run in the same directory as the source video for shot splicing to occur.
 
 ---
