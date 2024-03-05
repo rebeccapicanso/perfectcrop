@@ -69,6 +69,7 @@ def main():
     args = parser.parse_args()
 
     # this isn't totally necessary, but again avoiding an edge case.
+    # argparse is sometimes generating a tuple error where none exists.
     perfcrop = args.perf
     shots_ = args.shots
     grid_ = args.grid
