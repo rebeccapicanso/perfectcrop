@@ -180,7 +180,7 @@ def grid(input, output):
                 subprocess.call(command_grid, shell=True)
             except:
                 print("Please standardize your videos before generating grids.")
-                print("Run perfectcrop -i [input] -f standardize -o [output]")
+                print("Run perfectcrop -i [input] -t -o [output]")
                 sys.exit(1)
 
         # for 7x5 grid
@@ -190,7 +190,7 @@ def grid(input, output):
                 subprocess.call(command_grid, shell=True)
             except:
                 print("Please standardize your videos before generating grids.")
-                print("Run perfectcrop -i [input] -f standardize -o [output]")
+                print("Run perfectcrop -i [input] -t -o [output]")
                 sys.exit(1)
     
         # for 8x5 grid
@@ -200,7 +200,7 @@ def grid(input, output):
                 subprocess.call(command_grid, shell=True)
             except:
                 print("Please standardize your videos before generating grids.")
-                print("Run perfectcrop -i [input] -f standardize -o [output]")
+                print("Run perfectcrop -i [input] -t -o [output]")
                 sys.exit(1)
 
     # create the output directory if it doesn't exist
@@ -223,7 +223,7 @@ def grid(input, output):
         subprocess.call(command_concat, shell=True)
     except:
         print("Please standardize your videos before concatenating.")
-        print("Run perfectcrop -i [input] -f standardize -o [output]")
+        print("Run perfectcrop -i [input] -t -o [output]")
         sys.exit(1)
 
 if __name__ == "__main__":
