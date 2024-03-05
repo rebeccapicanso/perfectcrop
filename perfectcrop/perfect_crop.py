@@ -72,12 +72,11 @@ def save_images(input, output, search=LABEL):
                 if xmin > 0 and xmax > 0 and ymin > 0 and ymax > 0:
                     # this is giving a harmless global error... not sure why
                     img_read= cv2.imread(r'image.png')
-                    # hide the global loadsave error
-                    # ^^ didnt get to this, check back for v2
+                    # hide the global load save error
+                    # ^^ didn't get to this, check back for v2
                     
-                    # as the box isn't a real recorded thing,
-                    # i'm using cv2's rectangle function, which is mostly used
-                    # to determine pixel color
+                    # As the box isn't real, I'm using cv2's rectangle function
+                    # this is mostly used to determine pixel color
                     cv2.rectangle(img_read,(xmin,ymin),(xmax,ymax),(0,0,255),3)
                     
                     # calculating cross points
