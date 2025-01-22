@@ -6,6 +6,10 @@ import random
 # so lets call the function from video_standardize.py
 
 from video_standardize import standardize
+import logging
+
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
 # quick grids
 cropped = []
@@ -16,15 +20,11 @@ def setup(input, output):
     # set user input as path
     path_cropped = input
 
-    # create array of ungraded person
     for file in os.listdir(path_cropped):
 
         if file.endswith(".mp4"):
 
-            # set append path to file
             file = path_cropped + "/" + file
-            
-            # append file to array as we're running a subprocess
             cropped.append(file)
 
 # print(ungraded_person)
@@ -61,161 +61,48 @@ def grid(input, output):
         # shuffle every loop
         random.shuffle(cropped)
 
-        # create local variables
-        # this is verbose, but avoiding an edge case.
         if grid_size == "6x4":
-            ug1 = cropped[0]
-            ug2 = cropped[1]
-            ug3 = cropped[2]
-            ug4 = cropped[3]
-            ug5 = cropped[4]
-            ug6 = cropped[5]
-            ug7 = cropped[6]
-            ug8 = cropped[7]
-            ug9 = cropped[8]
-            ug10 = cropped[9]
-            ug11 = cropped[10]
-            ug12 = cropped[11]
-            ug13 = cropped[12]
-            ug14 = cropped[13]
-            ug15 = cropped[14]
-            ug16 = cropped[15]
-            ug17 = cropped[16]
-            ug18 = cropped[17]
-            ug19 = cropped[18]
-            ug20 = cropped[19]
-            ug21 = cropped[20]
-            ug22 = cropped[21]
-            ug23 = cropped[22]
-            ug24 = cropped[23]
+            ug = cropped[:24]
+            ug1, ug2, ug3, ug4, ug5, ug6, ug7, ug8, ug9, ug10, ug11, ug12, ug13, ug14, ug15, ug16, ug17, ug18, ug19, ug20, ug21, ug22, ug23, ug24 = ug
 
         elif grid_size == "7x5":
-            ug1 = cropped[0]
-            ug2 = cropped[1]
-            ug3 = cropped[2]
-            ug4 = cropped[3]
-            ug5 = cropped[4]
-            ug6 = cropped[5]
-            ug7 = cropped[6]
-            ug8 = cropped[7]
-            ug9 = cropped[8]
-            ug10 = cropped[9]
-            ug11 = cropped[10]
-            ug12 = cropped[11]
-            ug13 = cropped[12]
-            ug14 = cropped[13]
-            ug15 = cropped[14]
-            ug16 = cropped[15]
-            ug17 = cropped[16]
-            ug18 = cropped[17]
-            ug19 = cropped[18]
-            ug20 = cropped[19]
-            ug21 = cropped[20]
-            ug22 = cropped[21]
-            ug23 = cropped[22]
-            ug24 = cropped[23]
-            ug25 = cropped[24]
-            ug26 = cropped[25]
-            ug27 = cropped[26]
-            ug28 = cropped[27]
-            ug29 = cropped[28]
-            ug30 = cropped[29]
-            ug31 = cropped[30]
-            ug32 = cropped[31]
-            ug33 = cropped[32]
-            ug34 = cropped[33]
-            ug35 = cropped[34]
+            ug = cropped[:35]
+            ug1, ug2, ug3, ug4, ug5, ug6, ug7, ug8, ug9, ug10, ug11, ug12, ug13, ug14, ug15, ug16, ug17, ug18, ug19, ug20, ug21, ug22, ug23, ug24, ug25, ug26, ug27, ug28, ug29, ug30, ug31, ug32, ug33, ug34, ug35 = ug
 
-        # no / improper grid size was caught in first conditional pass through.
-        # for 8x5 grid
         else:
-            ug1 = cropped[0]
-            ug2 = cropped[1]
-            ug3 = cropped[2]
-            ug4 = cropped[3]
-            ug5 = cropped[4]
-            ug6 = cropped[5]
-            ug7 = cropped[6]
-            ug8 = cropped[7]
-            ug9 = cropped[8]
-            ug10 = cropped[9]
-            ug11 = cropped[10]
-            ug12 = cropped[11]
-            ug13 = cropped[12]
-            ug14 = cropped[13]
-            ug15 = cropped[14]
-            ug16 = cropped[15]
-            ug17 = cropped[16]
-            ug18 = cropped[17]
-            ug19 = cropped[18]
-            ug20 = cropped[19]
-            ug21 = cropped[20]
-            ug22 = cropped[21]
-            ug23 = cropped[22]
-            ug24 = cropped[23]
-            ug25 = cropped[24]
-            ug26 = cropped[25]
-            ug27 = cropped[26]
-            ug28 = cropped[27]
-            ug29 = cropped[28]
-            ug30 = cropped[29]
-            ug31 = cropped[30]
-            ug32 = cropped[31]
-            ug33 = cropped[32]
-            ug34 = cropped[33]
-            ug35 = cropped[34]
-            ug36 = cropped[35]
-            ug37 = cropped[36]
-            ug38 = cropped[37]
-            ug39 = cropped[38]
-            ug40 = cropped[39]
+            ug = cropped[:40]
+            ug1, ug2, ug3, ug4, ug5, ug6, ug7, ug8, ug9, ug10, ug11, ug12, ug13, ug14, ug15, ug16, ug17, ug18, ug19, ug20, ug21, ug22, ug23, ug24, ug25, ug26, ug27, ug28, ug29, ug30, ug31, ug32, ug33, ug34, ug35, ug36, ug37, ug38, ug39, ug40 = ug
 
         # set ffmpeg command to create grids
         # if ffmpeg fails, instead of breaking the program..
         # mention standardization of videos, and to try again.
         
         if grid_size == "6x4":
-            command_grid = "ffmpeg -i " + ug1 + " -i " + ug2 + " -i " + ug3 + " -i " + ug4 + " -i " + ug5 + " -i " + ug6 + " -i " + ug7 + " -i " + ug8 + " -i " + ug9 + " -i " + ug10 + " -i " + ug11 + " -i " + ug12 + " -i " + ug13 + " -i " + ug14 + " -i " + ug15 + " -i " + ug16 + " -i " + ug17 + " -i " + ug18 + " -i " + ug19 + " -i " + ug20 + " -i " + ug21 + " -i " + ug22 + " -i " + ug23 + " -i " + ug24 + " -filter_complex " + filer_complex + " -map " + map + " -crf 23 -preset veryfast -c:a copy " + "grid" + str(x) + ".mp4"
-            try:
-                subprocess.call(command_grid, shell=True)
-            except:
-                print("Please standardize your videos before generating grids.")
-                print("Run perfectcrop -i [input] -t -o [output]")
-                sys.exit(1)
-
-        # for 7x5 grid
+            command_grid = f"ffmpeg {' '.join(['-i ' + ug for ug in cropped[:24]])} -filter_complex {filer_complex} -map {map} -crf 23 -preset veryfast -c:a copy grid{x}.mp4"
         elif grid_size == "7x5":
-            command_grid = "ffmpeg -i " + ug1 + " -i " + ug2 + " -i " + ug3 + " -i " + ug4 + " -i " + ug5 + " -i " + ug6 + " -i " + ug7 + " -i " + ug8 + " -i " + ug9 + " -i " + ug10 + " -i " + ug11 + " -i " + ug12 + " -i " + ug13 + " -i " + ug14 + " -i " + ug15 + " -i " + ug16 + " -i " + ug17 + " -i " + ug18 + " -i " + ug19 + " -i " + ug20 + " -i " + ug21 + " -i " + ug22 + " -i " + ug23 + " -i " + ug24 + " -i " + ug25 + " -i " + ug26 + " -i " + ug27 + " -i " + ug28 + " -i " + ug29 + " -i " + ug30 + " -i " + ug31 + " -i " + ug32 + " -i " + ug33 + " -i " + ug34 + " -i " + ug35 + " -filter_complex " + filer_complex + " -map " + map + " -crf 23 -preset veryfast -c:a copy " + "grid" + str(x) + ".mp4"
-            try:
-                subprocess.call(command_grid, shell=True)
-            except:
-                print("Please standardize your videos before generating grids.")
-                print("Run perfectcrop -i [input] -t -o [output]")
-                sys.exit(1)
-    
-        # for 8x5 grid
+            command_grid = f"ffmpeg {' '.join(['-i ' + ug for ug in cropped[:35]])} -filter_complex {filer_complex} -map {map} -crf 23 -preset veryfast -c:a copy grid{x}.mp4"
+        elif grid_size == "8x5":
+            command_grid = f"ffmpeg {' '.join(['-i ' + ug for ug in cropped[:40]])} -filter_complex {filer_complex} -map {map} -crf 23 -preset veryfast -c:a copy grid{x}.mp4"
         else:
-            command_grid = "ffmpeg -i " + ug1 + " -i " + ug2 + " -i " + ug3 + " -i " + ug4 + " -i " + ug5 + " -i " + ug6 + " -i " + ug7 + " -i " + ug8 + " -i " + ug9 + " -i " + ug10 + " -i " + ug11 + " -i " + ug12 + " -i " + ug13 + " -i " + ug14 + " -i " + ug15 + " -i " + ug16 + " -i " + ug17 + " -i " + ug18 + " -i " + ug19 + " -i " + ug20 + " -i " + ug21 + " -i " + ug22 + " -i " + ug23 + " -i " + ug24 + " -i " + ug25 + " -i " + ug26 + " -i " + ug27 + " -i " + ug28 + " -i " + ug29 + " -i " + ug30 + " -i " + ug31 + " -i " + ug32 + " -i " + ug33 + " -i " + ug34 + " -i " + ug35 + "-i" + ug36 + "-i" + ug37 + "-i" + ug38 + "-i" + ug39 + "-i" + ug40 + " -filter_complex " + filer_complex + " -map " + map + " -crf 23 -preset veryfast -c:a copy " + "grid" + str(x) + ".mp4"
-            try:
-                subprocess.call(command_grid, shell=True)
-            except:
-                print("Please standardize your videos before generating grids.")
-                print("Run perfectcrop -i [input] -t -o [output]")
-                sys.exit(1)
+            print("Please enter a valid grid size.")
+            sys.exit(1)
 
-    # create the output directory if it doesn't exist
+        try:
+            subprocess.call(command_grid, shell=True)
+        except:
+            logger.error("Please standardize your videos before generating grids.")
+            logger.error("Run perfectcrop -i [input] -t -o [output]")
+            sys.exit(1)
+
     if not os.path.exists(output):
         os.makedirs(output)
     
-    # move all grids to output directory
     for file in os.listdir("."):
         if file.endswith(".mp4") and file.startswith("grid"):
             os.rename(file, output + "/" + file)
     
-    # enter output directory then run command_concat
     os.chdir(output)
 
-    # create fl.txt with all the names of the files
     command_fl = "find *.mp4 | sed 's:\ :\\\ :g'| sed 's/^/file /' > fl.txt"
     command_concat = "for file in *.mp4; do ffmpeg -f concat -i fl.txt -c copy output.mp4; rm fl.txt"
     try:

@@ -3,6 +3,10 @@ from PIL import Image
 from transformers import pipeline
 import cv2
 import os
+import logging
+
+logging.basicConfig(level=logging.ERROR)
+cv2.setLogLevel(cv2.LOG_LEVEL_ERROR)
 
 # please make sure you're using a term recognized by the model
 print("Perfect crop currently runs on HuggingFace's models with YOLO annotation, support other annotations are to be completed later.\n")
@@ -66,60 +70,38 @@ def save_images(input, output, search=LABEL):
                 xmax = box["xmax"]
                 ymax = box["ymax"]
 
-                # print(xmin,ymin,xmax,ymax)
-
-                # must make sure that the box is not out of bounds
                 if xmin > 0 and xmax > 0 and ymin > 0 and ymax > 0:
-                    # this is giving a harmless global error... not sure why
-                    img_read= cv2.imread(r'image.png')
-                    # hide the global load save error
-                    # ^^ didn't get to this, check back for v2
-                    
-                    # As the box isn't real, I'm using cv2's rectangle function
-                    # this is mostly used to determine pixel color
+
+                    img_read = cv2.imread(r'image.png')
                     cv2.rectangle(img_read,(xmin,ymin),(xmax,ymax),(0,0,255),3)
-                    
-                    # calculating cross points
+
                     center_x = int((xmin+xmax)//2)
                     center_y = int((ymin+ymax)//2)
-                    
-                    # center pixel to an array
                     center = [center_x,center_y]
                     average_center.append(center)
-                    # print(center)
-
                     index += 1
+
                 else:
                     print("out of bounds")
                     continue
-    
-    # it's a little inelegant but it works without sacrificing quality
 
     def average_crop():
-        print(average_center)
 
+        print(average_center)
         true_center= [sum(x)/len(x) for x in zip(*average_center)]
 
-        # now we have the coordinates of the box, we can crop the video
         clip = VideoFileClip(videofile)
 
         midpoint_x = true_center[0]
         midpoint_y = true_center[1]
-
         width = 300
         height = 300
 
-        # jam in whatever coordinates you want, size in pixels
         video = clip.crop(x_center=midpoint_x, y_center=midpoint_y, width=width, height=height)
-
-        # write it as the same name as the video file + _cropped
         video.write_videofile(f'{input}_label.mp4')
     
-    # call average crop
     average_crop()
     
-    # move clip from average crop into output directory
-    # create output directory if it doesn't already exist
     if not os.path.exists(f'{output}'):
         os.makedirs(f'{output}')
     
@@ -130,4 +112,7 @@ def save_images(input, output, search=LABEL):
     print("Files are in " + output)
 
 if __name__ == "__main__":
+    # output is init by cli.py
+    # default
+    output = "output.mp4"
     save_images(input, output)
