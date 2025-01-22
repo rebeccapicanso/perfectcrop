@@ -5,7 +5,8 @@ import cv2
 import os
 import logging
 
-logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 cv2.setLogLevel(cv2.LOG_LEVEL_ERROR)
 
 # please make sure you're using a term recognized by the model
@@ -27,41 +28,25 @@ average_center = []
 
 def save_images(input, output, search=LABEL):
 
-    # set input as videofile
     videofile = input
     clip = VideoFileClip(videofile)
-    
-    # initializing..
+
     index = 0
     frame_no = 0
 
-    # make output directory
     if not os.path.exists("output"):
         os.makedirs("output")
-
     
     for frame in clip.iter_frames():
         frame_no += 1
         if frame_no % SKIP != 0:
             continue
 
-        # print("Detecting objects in frame", frame_no)
-        
-        # calling Pillow's Image function
         image = Image.fromarray(frame)
-
-        # then tossing that image into the pipeline
-        # i.e. is it there or not?
         results = pipe(image)
 
         for r in results:
-            # print(r)
-            
-            # if the labeled object is in frame, yay
-            # YOLO annotative obj. detect algos draw the bounding box (the square it throws around something)
-            # based on max & min values. here, i'm just looking at the cross points.
-            # a bounding box is an ephemeral thing. it's not recorded, its an internal throw away process.
-            
+
             if r["label"] == search:
                 box = r["box"]
 
@@ -108,8 +93,7 @@ def save_images(input, output, search=LABEL):
     os.system(f'mv *.mp4 {output}')
     os.system(f'mv {output}/{input} .')
 
-    # notify file location
-    print("Files are in " + output)
+    logger.info("Files are in " + output)
 
 if __name__ == "__main__":
     # output is init by cli.py
