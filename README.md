@@ -9,8 +9,6 @@ v1 notes:
 - There's not yet an array storing acceptable labels. Please visit the COCO website for usable options. In v2, I'll be adding a webscraping element to append acceptable labels, in addition to other annotation support.
 - By default, atm perfectcrop works best with detecting a relatively static object. there's ways to track movement & crop with this algorithm, but I haven't yet figured out how to render out finishing quality video. stay tuned!
 
-v2 & the Django demo front end will be in development in the "development" branch in an effort to be cleaner w my commits. if you want to see what I'm working on, or suggest an edit, check there!
-
 ---
 
 Perfect Crop will locate a detected object within a video clip, find its average location, and create a cropped clip from the center. Object detection models splice videos into individual frames & then run detection on static images - Perfect Crop transmutes this into workable video.
